@@ -11,7 +11,7 @@ const Abteilung3 = () => {
           component={"img"}
           height={500}
           width={"100%"}
-          src="src/assets/abt3.png"
+          src="assets/abt3.png"
           sx={{ position: "relative", zIndex: 0 }}
         />
         <Typography
@@ -77,7 +77,7 @@ const Abteilung3 = () => {
               component={"img"}
               height={300}
               width={600}
-              src="src/assets/AVDual.jpg"
+              src="assets/AVDual.jpg"
               sx={{ objectFit: "cover", borderRadius: 2 }}
             />
           </a>

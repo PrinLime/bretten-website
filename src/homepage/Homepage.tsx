@@ -117,7 +117,7 @@ export default function Homepage() {
         </Typography>
         <Box
           component="img"
-          src="src/assets/homepage_background.png"
+          src="assets/homepage_background.png"
           alt="Background Image"
           sx={{
             width: "100%",
@@ -473,7 +473,7 @@ export default function Homepage() {
                 component={"img"}
                 borderRadius={4}
                 boxShadow={8}
-                src="src\assets\Infobroschuere_bretten.jpg"
+                src="assets\Infobroschuere_bretten.jpg"
               />
             </Link>
           </Box>
@@ -611,7 +611,7 @@ export default function Homepage() {
                 component={"img"}
                 borderRadius={4}
                 boxShadow={8}
-                src="src\assets\Infotag.png"
+                src="assets\Infotag.png"
                 sx={{
                   transition: "transform 0.3s ease, background-color 0.3s ease",
                   "&:hover": {

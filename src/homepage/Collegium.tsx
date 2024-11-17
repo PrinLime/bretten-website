@@ -24,7 +24,7 @@ const Collegium = () => {
             height={600}
             width={1200}
             component={"img"}
-            src="src\assets\Kollegium.jpeg"
+            src="assets\Kollegium.jpeg"
             sx={{
               marginTop: 2,
               maxWidth: "100%",

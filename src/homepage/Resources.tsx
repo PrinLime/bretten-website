@@ -56,7 +56,7 @@ export const members = [
     title: "Abteilungsleiter",
   },
   {
-    image: "src/assets/Mayer-1024x1024-600x600.jpeg",
+    image: "assets/Mayer-1024x1024-600x600.jpeg",
     name: "Friederike Mayer ",
     title: "Schulleitungsassistenz",
   },
