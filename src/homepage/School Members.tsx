@@ -9,7 +9,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { members } from "../assets/Resources";
+import { members } from "./Resources";
 import theme from "../styles";
 
 const SchoolMembers = () => {

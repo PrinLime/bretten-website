@@ -1,5 +1,17 @@
 import React from "react";
 
+export const expertieses = [
+  { name: "Gewerbliche Berufsschule", link: "/abteilung-1" },
+  { name: "Kaufmännische Berufsschule", link: "/abteilung-2" },
+  { name: "Übergang Schule & Beruf", link: "/abteilung-3" },
+  {
+    name: "Hauswirtschaftlich-sozialwissenschaftliche Schule",
+    link: "/abteilung-4",
+  },
+  { name: "Berufskollegs", link: "/abteilung-5" },
+  { name: "Berufliche Gymnasien", link: "/abteilung-6" },
+];
+
 export const members = [
   {
     image:

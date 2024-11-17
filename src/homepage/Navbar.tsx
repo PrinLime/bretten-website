@@ -87,21 +87,26 @@ const Navbar = () => {
           zIndex: (theme) => theme.zIndex.drawer + 1,
           position: "sticky", // Stick the AppBar to the top
           top: 0, // Ensure it's at the very top of the page
-          backgroundColor: theme.palette.primary.main, // Set your background color
+          backgroundColor: theme.palette.custom?.brettenBackground, // Set your background color
         }}
       >
         <Toolbar disableGutters>
           <Stack direction="column" width="100%" alignItems={"center"}>
             <Stack direction={"row"} width={"fit-content"} alignItems="center">
-              <IconButton edge="start">
+              <IconButton
+                edge="start"
+                onClick={() => {
+                  navigation("/");
+                }}
+              >
                 <img
-                  src="src\assets\bretten_logo.png"
+                  src="src\assets\bretten_logo_white.png"
                   height={125}
                   width={125}
                 />
               </IconButton>
               <Grid2 ml={2}>
-                <Typography variant="h3">
+                <Typography variant="h3" color={theme.palette.grey[300]}>
                   <b>Berufl. Schulen Bretten</b>
                 </Typography>
               </Grid2>
@@ -172,7 +177,7 @@ const Navbar = () => {
                               }}
                             >
                               <Typography
-                                color={theme.palette.grey[300]}
+                                color={theme.palette.primary.main}
                                 variant="body1"
                               >
                                 {underpage.page}

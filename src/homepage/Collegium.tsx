@@ -1,4 +1,4 @@
-import { Box, Container, Grid2, Paper, Typography } from "@mui/material";
+import { Box, Container, Grid2, Typography } from "@mui/material";
 import theme from "../styles";
 
 const Collegium = () => {
