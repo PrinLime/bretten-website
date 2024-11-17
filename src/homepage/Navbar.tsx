@@ -18,7 +18,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { useEffect, useState } from "react";
-import SearchIcon from "@mui/icons-material/Search";
 import theme from "../styles";
 import { useNavigate } from "react-router";
 
