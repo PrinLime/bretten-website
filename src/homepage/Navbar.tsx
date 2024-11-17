@@ -47,10 +47,49 @@ const pages = [
       { page: "Schülermoodle", link: "https://bw.schule/login" },
     ],
   },
-  { page: "Anmeldung +", underpages: [{ page: "Beratung", link: "/" }] },
   {
-    page: "Service +",
-    underpages: [{ page: "Impressum", link: "/impressum" }],
+    page: "Anmeldung +",
+    underpages: [
+      {
+        page: "Berufsschulen",
+        link: "https://bsb-bretten.de/wp-content/uploads/2024/11/Aufnahmeantrag_Berufsschule_2025-26.pdf",
+      },
+      {
+        page: "Einjährige Berufsschule - Metall",
+        link: "https://bsb-bretten.de/wp-content/uploads/2024/11/Aufnahmeantrag_AVDual_1BFMF_2025-26.pdf",
+      },
+      {
+        page: "Fachschule für Technik",
+        link: "https://bsb-bretten.de/wp-content/uploads/2024/11/Aufnahmeantrag_FTM_2025-26.pdf",
+      },
+      {
+        page: "AVDual",
+        link: "https://bsb-bretten.de/wp-content/uploads/2024/11/Aufnahmeantrag_AVDual_1BFMF_2025-26.pdf",
+      },
+      {
+        page: "VABO",
+        link: "https://bsb-bretten.de/wp-content/uploads/2024/11/Aufnahmeantrag_VABO_2025-26.pdf",
+      },
+      {
+        page: "Berufsfachschulen zur Aus- und Weiterbildung",
+        link: "https://bsb-bretten.de/wp-content/uploads/2024/11/Aufnahmeantrag_BFS_berufliche_Weiterb._2025-26.pdf",
+      },
+      {
+        page: "Aufbaukurs Gruppenleitung",
+        link: "https://bsb-bretten.de/wp-content/uploads/2024/02/Anmeldeformular_Aufbaukurs_Gruppenleitung_2024.pdf",
+      },
+      {
+        page: "BKFH",
+        link: "https://bsb-bretten.de/wp-content/uploads/2024/11/Aufnahmeantrag_BKFH_2025-26.pdf",
+      },
+    ],
+  },
+  {
+    page: "Kontakt +",
+    underpages: [
+      { page: "Impressum", link: "/impressum" },
+      { page: "Datenschutzerklärung", link: "/Datenschutzerklärung" },
+    ],
   }, //Auslandaktivitäten an den BSB, Speiseplan, Kontakt, Aufbaukurs Gruppenleitung, KVV-Ticket
 ];
 const imageMediaPaths = [

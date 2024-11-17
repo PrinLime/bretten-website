@@ -16,6 +16,7 @@ import Abteilung3 from "./homepage/Abteilung3";
 import Abteilung4 from "./homepage/Abteilung4";
 import Abteilung5 from "./homepage/Abteilung5";
 import Abteilung6 from "./homepage/Abteilung6";
+import Datenschutzerklärung from "./homepage/Datenschutzerklärung";
 
 function App() {
   return (
@@ -30,6 +31,10 @@ function App() {
             <Route path="/sekretariat" element={<Secretary />} />
             <Route path="/kollegium" element={<Collegium />} />
             <Route path="/impressum" element={<Imprint />} />
+            <Route
+              path="/Datenschutzerklärung"
+              element={<Datenschutzerklärung />}
+            />
             <Route path="/abteilung-1" element={<Abteilung1 />} />
             <Route path="/abteilung-2" element={<Abteilung2 />} />
             <Route path="/abteilung-3" element={<Abteilung3 />} />

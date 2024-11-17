@@ -498,7 +498,12 @@ export default function Homepage() {
                 justifyItems: "center",
               }}
             >
-              <Typography variant="h4">Neuigkeiten</Typography>
+              <Typography
+                variant="h4"
+                color={theme.palette.custom?.brettenBackground}
+              >
+                Neuigkeiten
+              </Typography>
             </Grid2>
           </Box>
           <Box width={"90%"} boxShadow={8} borderRadius={2}>
@@ -545,7 +550,12 @@ export default function Homepage() {
                 justifyItems: "center",
               }}
             >
-              <Typography variant="h4">Soziale Medien</Typography>
+              <Typography
+                variant="h4"
+                color={theme.palette.custom?.brettenBackground}
+              >
+                Soziale Medien
+              </Typography>
             </Grid2>
           </Box>
           <Box width={"90%"} boxShadow={8}>

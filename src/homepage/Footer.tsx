@@ -11,9 +11,11 @@ import {
   useTheme,
 } from "@mui/material";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { useNavigate } from "react-router";
 
 export default function Footer() {
   const theme = useTheme();
+  const navigate = useNavigate();
   return (
     <>
       <Box
@@ -62,15 +64,17 @@ export default function Footer() {
                     }}
                   />
                 </ListItemIcon>
-                <ListItemText sx={{ color: "white" }}>
-                  <Typography sx={{ fontSize: 16 }}>
-                    <Link
-                      href="#"
-                      underline="none"
-                      color={theme.palette.custom?.footer}
-                    >
-                      Kontakt
-                    </Link>
+                <ListItemText
+                  sx={{ color: "white" }}
+                  onClick={() => {
+                    navigate("/impressum");
+                  }}
+                >
+                  <Typography
+                    sx={{ fontSize: 16 }}
+                    color={theme.palette.grey[300]}
+                  >
+                    Kontakt
                   </Typography>
                 </ListItemText>
               </ListItem>
@@ -83,15 +87,17 @@ export default function Footer() {
                     }}
                   />
                 </ListItemIcon>
-                <ListItemText sx={{ color: "white" }}>
-                  <Typography sx={{ fontSize: 16 }}>
-                    <Link
-                      href="#"
-                      underline="none"
-                      color={theme.palette.custom?.footer}
-                    >
-                      Abteilungen
-                    </Link>
+                <ListItemText
+                  sx={{ color: "white" }}
+                  onClick={() => {
+                    navigate("/");
+                  }}
+                >
+                  <Typography
+                    sx={{ fontSize: 16 }}
+                    color={theme.palette.grey[300]}
+                  >
+                    Abteilungen
                   </Typography>
                 </ListItemText>
               </ListItem>
@@ -104,12 +110,20 @@ export default function Footer() {
                     }}
                   />
                 </ListItemIcon>
-                <ListItemText sx={{ color: "white" }}>
-                  <Typography sx={{ fontSize: 16 }}>
+                <ListItemText
+                  sx={{ color: "white" }}
+                  onClick={() => {
+                    navigate("/");
+                  }}
+                >
+                  <Typography
+                    sx={{ fontSize: 16 }}
+                    color={theme.palette.grey[300]}
+                  >
                     <Link
                       href="#"
                       underline="none"
-                      color={theme.palette.custom?.footer}
+                      color={theme.palette.grey[300]}
                     >
                       AGB
                     </Link>
@@ -125,15 +139,17 @@ export default function Footer() {
                     }}
                   />
                 </ListItemIcon>
-                <ListItemText sx={{ color: "white" }}>
-                  <Typography sx={{ fontSize: 16 }}>
-                    <Link
-                      href="#"
-                      underline="none"
-                      color={theme.palette.custom?.footer}
-                    >
-                      Impressum
-                    </Link>
+                <ListItemText
+                  sx={{ color: "white" }}
+                  onClick={() => {
+                    navigate("/impressum");
+                  }}
+                >
+                  <Typography
+                    sx={{ fontSize: 16 }}
+                    color={theme.palette.grey[300]}
+                  >
+                    Impressum
                   </Typography>
                 </ListItemText>
               </ListItem>
@@ -146,15 +162,16 @@ export default function Footer() {
                     }}
                   />
                 </ListItemIcon>
-                <ListItemText>
-                  <Typography sx={{ fontSize: 16 }}>
-                    <Link
-                      href={"#"}
-                      underline="none"
-                      color={theme.palette.custom?.footer}
-                    >
-                      Datenschutzerklärung
-                    </Link>
+                <ListItemText
+                  onClick={() => {
+                    navigate("/Datenschutzerklärung");
+                  }}
+                >
+                  <Typography
+                    sx={{ fontSize: 16 }}
+                    color={theme.palette.grey[300]}
+                  >
+                    Datenschutzerklärung
                   </Typography>
                 </ListItemText>
               </ListItem>

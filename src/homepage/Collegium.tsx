@@ -7,7 +7,6 @@ const Collegium = () => {
       <Container
         sx={{
           width: "100%",
-          border: 2,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",

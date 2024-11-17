@@ -32,7 +32,12 @@ const Abteilung2 = () => {
       </Box>
       <AbteilungComponent />
       <Container sx={{ mt: 8, mb: 6, position: "relative", zIndex: 2 }}>
-        <Typography variant="h4" mb={2} fontWeight={"bold"}>
+        <Typography
+          variant="h4"
+          mb={2}
+          fontWeight={"bold"}
+          color={theme.palette.custom?.brettenBackground}
+        >
           Herzlich Willkommen in der Kaufmännischen Berufsschule
         </Typography>
         <Typography
