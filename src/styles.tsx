@@ -46,7 +46,7 @@ const theme = createTheme({
       paper: "#f0f4f7", // White for paper surfaces
     },
     text: {
-      primary: "#bfc5ca", // Primary text color
+      primary: "#000000", // Primary text color
       secondary: "#1D1F22", // Darker text for secondary content
     },
     custom: {

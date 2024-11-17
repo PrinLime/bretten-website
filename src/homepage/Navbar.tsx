@@ -7,6 +7,8 @@ import {
   List,
   ListItem,
   ListItemText,
+  Menu,
+  MenuItem,
   Stack,
   Toolbar,
   Typography,
@@ -15,17 +17,41 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import React, { useState } from "react";
+import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import theme from "../styles";
+import { useNavigate } from "react-router";
 
 const pages = [
-  { page: "Willkommen" }, //main site
-  { page: "Neuigkeiten +", underpages: ["Aktuelles"] }, //Aktuelles, insta, facebook, etc.
-  { page: "Schulgemeinde +", underpages: ["Beratung"] }, //Beratung, Berufsorientierung, Speiseplan,
-  { page: "BSB-Intern +" },
-  { page: "Anmeldung +" },
-  { page: "Service +", underpages: ["Kontakt"] }, //Auslandaktivitäten an den BSB, Speiseplan, Kontakt, Aufbaukurs Gruppenleitung, KVV-Ticket
+  { page: "Willkommen", link: "/" }, //main site
+  { page: "Aktuelles", link: "/aktuelles" }, //Aktuelles, insta, facebook, etc.
+  {
+    page: "Schulgemeinde +",
+    underpages: [
+      { page: "Schulleitung", link: "/schulleitung" },
+      { page: "Sekreteriat", link: "/sekretariat" },
+      { page: "Kollegium", link: "/kollegium" },
+    ],
+  }, //Beratung, Berufsorientierung, Speiseplan,
+  {
+    page: "BSB-Intern +",
+    underpages: [
+      {
+        page: "Webuntis",
+        link: "https://borys.webuntis.com/WebUntis/index.do;jsessionid=E4047A9BB7C2553AD07859B48C4A8D22#/basic/login",
+      },
+      {
+        page: "PaedML",
+        link: "https://intranet.bsb-bretten.de/nextcloud/login",
+      },
+      { page: "Schülermoodle", link: "https://bw.schule/login" },
+    ],
+  },
+  { page: "Anmeldung +", underpages: [{ page: "Beratung", link: "/" }] },
+  {
+    page: "Service +",
+    underpages: [{ page: "Impressum", link: "/impressum" }],
+  }, //Auslandaktivitäten an den BSB, Speiseplan, Kontakt, Aufbaukurs Gruppenleitung, KVV-Ticket
 ];
 const imageMediaPaths = [
   "src/assets/facebook_white.png",
@@ -39,18 +65,19 @@ const imageMediaPaths = [
 // }
 
 const Navbar = () => {
-  const [_, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
   const [openDrawer, setOpenDrawer] = useState(false);
-
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null); // Track the anchor element
+
+  const [openSubMenuIndex, setOpenSubMenuIndex] = useState<number | null>(null);
+  const navigation = useNavigate();
 
   const handleToggle = (index: number | null) => {
     setOpenIndex(index === openIndex ? null : index);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -58,9 +85,9 @@ const Navbar = () => {
       <AppBar
         sx={{
           zIndex: (theme) => theme.zIndex.drawer + 1,
-          display: "flex",
-          position: "absolute",
-          backgroundColor: theme.palette.primary.main,
+          position: "sticky", // Stick the AppBar to the top
+          top: 0, // Ensure it's at the very top of the page
+          backgroundColor: theme.palette.primary.main, // Set your background color
         }}
       >
         <Toolbar disableGutters>
@@ -73,14 +100,13 @@ const Navbar = () => {
                   width={125}
                 />
               </IconButton>
-              <Grid2 direction={"column"} ml={2}>
+              <Grid2 ml={2}>
                 <Typography variant="h3">
                   <b>Berufl. Schulen Bretten</b>
                 </Typography>
               </Grid2>
             </Stack>
             <Box
-              border={2}
               width={"fit-content"}
               justifyContent="center"
               alignItems="center"
@@ -92,21 +118,70 @@ const Navbar = () => {
             >
               {useMediaQuery(theme.breakpoints.up("lg")) ? (
                 pages.map((page, index) => (
-                  <Button
-                    key={index}
-                    onClick={handleCloseNavMenu}
-                    sx={{
-                      my: 2,
-                      color: "black",
-                      display: "block",
-                      ml: 2,
-                      fontSize: 15,
-                    }}
-                  >
-                    <Typography color={theme.palette.text.primary} variant="h6">
-                      {page.page}
-                    </Typography>
-                  </Button>
+                  <div key={index}>
+                    <Button
+                      onClick={(e) => {
+                        if (page.underpages) {
+                          // Toggle submenu based on current state
+                          setOpenSubMenuIndex(
+                            openSubMenuIndex === index ? null : index
+                          );
+                          setAnchorEl(e.currentTarget); // Set the button as the anchor element for the menu
+                        } else {
+                          navigation(page.link); // Navigate if no underpages
+                        }
+                      }}
+                      sx={{
+                        my: 2,
+                        color: "black",
+                        display: "block",
+                        ml: 2,
+                        fontSize: 15,
+                      }}
+                    >
+                      <Typography color={theme.palette.grey[300]} variant="h6">
+                        {page.page}
+                      </Typography>
+                    </Button>
+
+                    {page.underpages &&
+                      openSubMenuIndex === index && ( // Only open the submenu for the selected page
+                        <Menu
+                          anchorEl={anchorEl} // Use the anchorEl state
+                          open={Boolean(openSubMenuIndex === index)}
+                          onClose={() => setOpenSubMenuIndex(null)} // Close when clicking outside
+                          anchorOrigin={{
+                            vertical: "bottom",
+                            horizontal: "left",
+                          }}
+                          transformOrigin={{
+                            vertical: "top",
+                            horizontal: "left",
+                          }}
+                        >
+                          {page.underpages.map((underpage, subIndex) => (
+                            <MenuItem
+                              key={subIndex}
+                              onClick={() => {
+                                setOpenSubMenuIndex(null); // Close the menu
+                                if (underpage.link.startsWith("/")) {
+                                  navigation(underpage.link);
+                                } else {
+                                  window.open(underpage.link, "_blank");
+                                }
+                              }}
+                            >
+                              <Typography
+                                color={theme.palette.grey[300]}
+                                variant="body1"
+                              >
+                                {underpage.page}
+                              </Typography>
+                            </MenuItem>
+                          ))}
+                        </Menu>
+                      )}
+                  </div>
                 ))
               ) : (
                 <IconButton

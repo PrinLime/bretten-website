@@ -1,5 +1,55 @@
 import React from "react";
 
+export const members = [
+  {
+    image:
+      "https://bsb-bretten.de/wp-content/uploads/2022/10/rdn-1024x1024-190x190.jpeg",
+    name: "Nicole Roeder",
+    title: "Schulleiterin",
+  },
+  {
+    image:
+      "https://bsb-bretten.de/wp-content/uploads/2022/10/foos-1024x1024-190x190.jpeg",
+    name: "Klaus-Martin Foos",
+    title: "Steilvertretender Schulleiter",
+  },
+  {
+    image:
+      "https://bsb-bretten.de/wp-content/uploads/2022/10/kempf-1-1024x1024-190x190.jpeg",
+    name: "Matthias Kempf",
+    title: "Abteilungsleiter",
+  },
+  {
+    image:
+      "https://bsb-bretten.de/wp-content/uploads/2022/10/84B094DE-C3E2-4F92-85C8-1AD6DE1E4FF7-1024x1024-190x190.jpeg",
+    name: "Sven Hölig",
+    title: "Abteilungsleiter",
+  },
+  {
+    image:
+      "https://bsb-bretten.de/wp-content/uploads/2022/10/odw-1024x1024-190x190.jpeg",
+    name: "Christian Odenwald",
+    title: "Abteilungsleiter",
+  },
+  {
+    image:
+      "https://bsb-bretten.de/wp-content/uploads/2022/10/heilig-1024x1024-190x190.jpeg",
+    name: "Gerd Heilig",
+    title: "Abteilungsleiter",
+  },
+  {
+    image:
+      "https://bsb-bretten.de/wp-content/uploads/2022/10/neu-1024x1024-190x190.jpeg",
+    name: "Andrea Neumann",
+    title: "Abteilungsleiter",
+  },
+  {
+    image: "src/assets/Mayer-1024x1024-600x600.jpeg",
+    name: "Friederike Mayer ",
+    title: "Schulleitungsassistenz",
+  },
+];
+
 const InstagramEmbed: React.FC = () => {
   return (
     <div>
