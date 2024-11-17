@@ -1,33 +1,37 @@
-import { Container, Grid2, Typography } from "@mui/material";
+import { Box, Container, Grid2, Typography } from "@mui/material";
 import AbteilungComponent from "./AbteilungComponent";
 import theme from "../styles";
 
 const Abteilung1 = () => {
   return (
     <>
-      <Grid2
-        component={"img"}
-        height={500}
-        width={"100%"}
-        src="src\assets\abt1.png"
-      ></Grid2>
-      <Typography
-        sx={{
-          position: "absolute", // Places the text on top of the image
-          top: "50%", // Centers vertically
-          left: "50%", // Centers horizontally
-          transform: "translate(-50%, -50%)", // Perfectly centers it
-          color: "white",
-          fontSize: "72px",
-          fontWeight: "bold",
-          textAlign: "center",
-          zIndex: 1, // Ensures text stays above the image
-        }}
-      >
-        Gewerbliche Schule
-      </Typography>
+      {/* Wrapping the image and text inside a Box for better control */}
+      <Box sx={{ position: "relative", height: 500, width: "100%" }}>
+        <Grid2
+          component={"img"}
+          height={500}
+          width={"100%"}
+          src="src/assets/abt1.png"
+          sx={{ position: "relative", zIndex: 0 }} // Keep image at a base level
+        />
+        <Typography
+          sx={{
+            position: "absolute", // Places the text on top of the image
+            top: "50%", // Centers vertically
+            left: "50%", // Centers horizontally
+            transform: "translate(-50%, -50%)", // Perfectly centers it
+            color: "white",
+            fontSize: "72px",
+            fontWeight: "bold",
+            textAlign: "center",
+            zIndex: 1, // Lower zIndex to keep it under other components
+          }}
+        >
+          Gewerbliche Schule
+        </Typography>
+      </Box>
       <AbteilungComponent />
-      <Container sx={{ mt: 8, mb: 2 }}>
+      <Container sx={{ mt: 8, mb: 2, position: "relative", zIndex: 2 }}>
         <Typography
           variant="h4"
           color={theme.palette.custom?.brettenBackground}
@@ -53,7 +57,7 @@ const Abteilung1 = () => {
           <ul>
             <li>
               als Realschüler nach der abgeschlossenen Berufsausbildung und
-              Zusatzunterricht die Fachhochschulreifeerlangen?
+              Zusatzunterricht die Fachhochschulreife erlangen?
             </li>
             <li>
               einen Neustart an einer bestens ausgestatteten Schule mit
@@ -63,7 +67,8 @@ const Abteilung1 = () => {
           </ul>
           Dann lernen Sie je nach Dauer Ihres Ausbildungsverhältnisses im
           Teilzeitunterricht bis zur schriftlichen und mündlichen
-          Abschlussprüfung …<br />
+          Abschlussprüfung …
+          <br />
           <ul>
             <li>
               Aufbauendes in bekannten Fächern wie Deutsch und

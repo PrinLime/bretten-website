@@ -23,6 +23,7 @@ const AbteilungComponent = () => {
           flexWrap: "nowrap", // Prevents wrapping
           width: "100%", // Full width of the container
           justifyContent: "center", // Centers content if needed
+          zIndex: 99999,
         }}
       >
         {expertieses.map((item, index) => (
