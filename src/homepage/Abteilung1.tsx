@@ -27,7 +27,7 @@ const Abteilung1 = () => {
             zIndex: 1, // Lower zIndex to keep it under other components
           }}
         >
-          Gewerbliche Schule
+          Gewerbliche Berufsschule
         </Typography>
       </Box>
       <AbteilungComponent />

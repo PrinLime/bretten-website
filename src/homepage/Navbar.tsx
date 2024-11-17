@@ -282,17 +282,6 @@ const Navbar = () => {
                 justifyContent="center"
                 alignItems="center"
               >
-                <Box
-                  justifyContent="center"
-                  alignItems="center"
-                  sx={{ ml: "auto" }}
-                >
-                  <IconButton>
-                    <SearchIcon
-                      sx={{ fontSize: 40, color: theme.palette.common.white }}
-                    />
-                  </IconButton>
-                </Box>
                 {imageMediaPaths.map((image, index) => (
                   <IconButton
                     key={image}
