@@ -17,7 +17,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import theme from "../styles";
 import { useNavigate } from "react-router";
@@ -68,8 +68,8 @@ const Navbar = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null); // Track the anchor element
-
   const [openSubMenuIndex, setOpenSubMenuIndex] = useState<number | null>(null);
+  const [atTop, setAtTop] = useState(true);
   const navigation = useNavigate();
 
   const handleToggle = (index: number | null) => {
@@ -80,19 +80,56 @@ const Navbar = () => {
     setAnchorEl(null);
   };
 
+  // Effect to monitor scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollTop = window.scrollY; // Updated to use scrollY
+      setAtTop(currentScrollTop === 0); // Set atTop to true only when scrolled to the top
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
       <AppBar
         sx={{
           zIndex: (theme) => theme.zIndex.drawer + 1,
-          position: "sticky", // Stick the AppBar to the top
-          top: 0, // Ensure it's at the very top of the page
-          backgroundColor: theme.palette.custom?.brettenBackground, // Set your background color
+          position: "sticky",
+          top: 0,
+          backgroundColor: theme.palette.custom?.brettenBackground,
+          height: atTop ? 250 : 100,
+          transition: "height 0.3s ease-out",
         }}
       >
-        <Toolbar disableGutters>
-          <Stack direction="column" width="100%" alignItems={"center"}>
-            <Stack direction={"row"} width={"fit-content"} alignItems="center">
+        <Toolbar
+          disableGutters
+          sx={{
+            minHeight: "auto", // Allows dynamic height adjustment
+            px: 2, // Optional: padding for the toolbar
+          }}
+        >
+          <Stack
+            direction="column"
+            minHeight={"auto"}
+            width="100%"
+            alignItems={"center"}
+          >
+            <Stack
+              direction={"row"}
+              width={"fit-content"}
+              alignItems="center"
+              sx={{
+                maxHeight: atTop ? "200px" : "0px", // Adjust height based on scroll position
+                overflow: "hidden", // Hide the content when collapsed
+                opacity: atTop ? 1 : 0, // Fade out effect
+                transition: "max-height 0.3s ease-out, opacity 0.3s ease-out",
+              }}
+            >
               <IconButton
                 edge="start"
                 onClick={() => {
@@ -113,7 +150,6 @@ const Navbar = () => {
             </Stack>
             <Box
               width={"fit-content"}
-              justifyContent="center"
               alignItems="center"
               sx={{
                 flexGrow: 1,
