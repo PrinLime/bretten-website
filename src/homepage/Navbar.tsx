@@ -4,19 +4,16 @@ import {
   Button,
   Grid2,
   IconButton,
-  List,
-  ListItem,
-  ListItemText,
   Menu,
   MenuItem,
+  MenuList,
+  Paper,
   Stack,
   Toolbar,
   Typography,
   useMediaQuery,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
 import { useEffect, useState } from "react";
 import theme from "../styles";
 import { useNavigate } from "react-router";
@@ -110,10 +107,6 @@ const Navbar = () => {
   const [atTop, setAtTop] = useState(true);
   const navigation = useNavigate();
 
-  const handleToggle = (index: number | null) => {
-    setOpenIndex(index === openIndex ? null : index);
-  };
-
   const handleCloseNavMenu = () => {
     setAnchorEl(null);
   };
@@ -140,7 +133,7 @@ const Navbar = () => {
           position: "sticky",
           top: 0,
           backgroundColor: theme.palette.custom?.brettenBackground,
-          height: atTop ? 250 : 100,
+          height: atTop ? "5%" : "2%",
           transition: "height 0.3s ease-out",
         }}
       >
@@ -189,6 +182,7 @@ const Navbar = () => {
             <Box
               width={"fit-content"}
               alignItems="center"
+              justifyContent={"center"}
               sx={{
                 flexGrow: 1,
                 display: "flex",
@@ -323,20 +317,87 @@ const Navbar = () => {
             </Box>
           </Stack>
         </Toolbar>
-        {openDrawer && (
-          <List>
-            {pages.map((page, index) => (
-              <ListItem
-                component="button"
-                key={index}
-                onClick={() => handleToggle(index)}
+        <Grid2 sx={{
+          backgroundColor: theme.palette.custom?.brettenBackground,
+          height: atTop ? "0%" : "0%",
+          transition: "max-height 0.3s ease-out, opacity 0.3s ease-out"}}>
+        { useMediaQuery(theme.breakpoints.down("lg")) && openDrawer && (
+          pages.map((page, index) => (
+            <div key={index} style={{backgroundColor: theme.palette.custom?.brettenBackground}}>
+              <Button
+                onClick={(e) => {
+                  if (page.underpages) {
+                    // Toggle submenu based on current state
+                    setOpenSubMenuIndex(
+                      openSubMenuIndex === index ? null : index
+                    );
+                    setAnchorEl(e.currentTarget); // Set the button as the anchor element for the menu
+                  } else {
+                    navigation(page.link); // Navigate if no underpages
+                  }
+                }}
+                sx={{
+                  width: "100%",
+                  my: 2,
+                  color: "black",
+                  display: "block",
+                  ml: 2,
+                  fontSize: 15,
+                }}
               >
-                <ListItemText primary={page.page} />
-                {index === openIndex ? <ExpandLess /> : <ExpandMore />}
-              </ListItem>
-            ))}
-          </List>
-        )}
+                <Typography color={theme.palette.grey[300]} variant="h6">
+                  {page.page}
+                </Typography>
+              </Button>
+
+              {page.underpages &&
+                openSubMenuIndex === index && ( // Only open the submenu for the selected page
+                <Menu
+                anchorEl={anchorEl} // Use the anchorEl state
+                open={Boolean(openSubMenuIndex === index)}
+                onClose={() => setOpenSubMenuIndex(null)} // Close when clicking outside
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                >
+                  <Paper 
+                    sx={{width: "100vh", justifyContent: "center"}}>
+                  <MenuList
+                    dense
+                  >
+                    {page.underpages.map((underpage, subIndex) => (
+                      <MenuItem
+                        key={subIndex}
+                        onClick={() => {
+                          setOpenSubMenuIndex(null); // Close the menu
+                          if (underpage.link.startsWith("/")) {
+                            navigation(underpage.link);
+                          } else {
+                            window.open(underpage.link, "_blank");
+                          }
+                        }}
+                    sx={{width: "100%", border: 2}}
+
+                      >
+                        <Typography
+                          color={theme.palette.primary.main}
+                          variant="body1"
+                        >
+                          {underpage.page}
+                        </Typography>
+                      </MenuItem>
+                    ))}
+                  </MenuList>
+                  </Paper>
+                  </Menu>
+                )}
+            </div>
+          )))}</Grid2>
       </AppBar>
     </>
   );
