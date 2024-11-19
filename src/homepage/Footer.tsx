@@ -9,6 +9,7 @@ import {
   ListItemText,
   Link,
   useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { useNavigate } from "react-router";
@@ -19,11 +20,16 @@ export default function Footer() {
   return (
     <>
       <Box
-        height={400}
-        sx={{ backgroundColor: theme.palette.custom?.footerBackground }}
+        height={useMediaQuery(theme.breakpoints.down("md")) ? 700 : 400}
+        sx={{
+          backgroundColor: theme.palette.custom?.footerBackground,
+          justifyContent: "center",
+        }}
       >
         <Stack
-          direction={"row"}
+          direction={
+            useMediaQuery(theme.breakpoints.down("md")) ? "column" : "row"
+          }
           height={"100%"}
           justifyContent="center"
           alignItems="center"

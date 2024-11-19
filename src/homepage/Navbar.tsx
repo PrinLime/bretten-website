@@ -6,8 +6,6 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  MenuList,
-  Paper,
   Stack,
   Toolbar,
   Typography,
@@ -101,7 +99,6 @@ const imageMediaPaths = [
 
 const Navbar = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null); // Track the anchor element
   const [openSubMenuIndex, setOpenSubMenuIndex] = useState<number | null>(null);
   const [atTop, setAtTop] = useState(true);
@@ -174,7 +171,11 @@ const Navbar = () => {
                 />
               </IconButton>
               <Grid2 ml={2}>
-                <Typography variant="h3" color={theme.palette.grey[300]}>
+                <Typography
+                  variant="h3"
+                  color={theme.palette.grey[300]}
+                  sx={{ userSelect: "none" }}
+                >
                   <b>Berufl. Schulen Bretten</b>
                 </Typography>
               </Grid2>
@@ -193,6 +194,15 @@ const Navbar = () => {
                 pages.map((page, index) => (
                   <div key={index}>
                     <Button
+                      onMouseEnter={(e) => {
+                        if (page.underpages) {
+                          // Toggle submenu based on current state
+                          setOpenSubMenuIndex(
+                            openSubMenuIndex === index ? null : index
+                          );
+                          setAnchorEl(e.currentTarget); // Set the button as the anchor element for the menu
+                        }
+                      }}
                       onClick={(e) => {
                         if (page.underpages) {
                           // Toggle submenu based on current state
@@ -210,6 +220,13 @@ const Navbar = () => {
                         display: "block",
                         ml: 2,
                         fontSize: 15,
+
+                        transition:
+                          "transform 0.3s ease, background-color 0.3s ease",
+                        "&:hover": {
+                          backgroundColor: theme.palette.common.white,
+                          color: theme.palette.common.black,
+                        },
                       }}
                     >
                       <Typography color={theme.palette.grey[300]} variant="h6">
@@ -232,26 +249,34 @@ const Navbar = () => {
                             horizontal: "left",
                           }}
                         >
-                          {page.underpages.map((underpage, subIndex) => (
-                            <MenuItem
-                              key={subIndex}
-                              onClick={() => {
-                                setOpenSubMenuIndex(null); // Close the menu
-                                if (underpage.link.startsWith("/")) {
-                                  navigation(underpage.link);
-                                } else {
-                                  window.open(underpage.link, "_blank");
-                                }
-                              }}
-                            >
-                              <Typography
-                                color={theme.palette.primary.main}
-                                variant="body1"
+                          <div
+                            onMouseLeave={() => {
+                              setOpenSubMenuIndex(null);
+                            }}
+                            style={{ maxWidth: 200 }}
+                          >
+                            {page.underpages.map((underpage, subIndex) => (
+                              <MenuItem
+                                key={subIndex}
+                                onClick={() => {
+                                  setOpenSubMenuIndex(null); // Close the menu
+                                  if (underpage.link.startsWith("/")) {
+                                    navigation(underpage.link);
+                                  } else {
+                                    window.open(underpage.link, "_blank");
+                                  }
+                                }}
+                                sx={{ maxWidth: 200, textWrap: "wrap" }}
                               >
-                                {underpage.page}
-                              </Typography>
-                            </MenuItem>
-                          ))}
+                                <Typography
+                                  color={theme.palette.primary.main}
+                                  variant="body1"
+                                >
+                                  {underpage.page}
+                                </Typography>
+                              </MenuItem>
+                            ))}
+                          </div>
                         </Menu>
                       )}
                   </div>
@@ -317,87 +342,94 @@ const Navbar = () => {
             </Box>
           </Stack>
         </Toolbar>
-        <Grid2 sx={{
-          backgroundColor: theme.palette.custom?.brettenBackground,
-          height: atTop ? "0%" : "0%",
-          transition: "max-height 0.3s ease-out, opacity 0.3s ease-out"}}>
-        { useMediaQuery(theme.breakpoints.down("lg")) && openDrawer && (
-          pages.map((page, index) => (
-            <div key={index} style={{backgroundColor: theme.palette.custom?.brettenBackground}}>
-              <Button
-                onClick={(e) => {
-                  if (page.underpages) {
-                    // Toggle submenu based on current state
-                    setOpenSubMenuIndex(
-                      openSubMenuIndex === index ? null : index
-                    );
-                    setAnchorEl(e.currentTarget); // Set the button as the anchor element for the menu
-                  } else {
-                    navigation(page.link); // Navigate if no underpages
-                  }
-                }}
-                sx={{
-                  width: "100%",
-                  my: 2,
-                  color: "black",
-                  display: "block",
-                  ml: 2,
-                  fontSize: 15,
+        <Grid2
+          sx={{
+            backgroundColor: theme.palette.custom?.brettenBackground,
+            height: atTop ? "0%" : "0%",
+            transition: "max-height 0.3s ease-out, opacity 0.3s ease-out",
+          }}
+        >
+          {useMediaQuery(theme.breakpoints.down("lg")) &&
+            openDrawer &&
+            pages.map((page, index) => (
+              <div
+                key={index}
+                style={{
+                  backgroundColor: theme.palette.custom?.brettenBackground,
                 }}
               >
-                <Typography color={theme.palette.grey[300]} variant="h6">
-                  {page.page}
-                </Typography>
-              </Button>
-
-              {page.underpages &&
-                openSubMenuIndex === index && ( // Only open the submenu for the selected page
-                <Menu
-                anchorEl={anchorEl} // Use the anchorEl state
-                open={Boolean(openSubMenuIndex === index)}
-                onClose={() => setOpenSubMenuIndex(null)} // Close when clicking outside
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
+                <Button
+                  onClick={(e) => {
+                    if (page.underpages) {
+                      // Toggle submenu based on current state
+                      setOpenSubMenuIndex(
+                        openSubMenuIndex === index ? null : index
+                      );
+                      setAnchorEl(e.currentTarget); // Set the button as the anchor element for the menu
+                    } else {
+                      navigation(page.link); // Navigate if no underpages
+                    }
+                  }}
+                  sx={{
+                    width: "100%",
+                    my: 2,
+                    color: "black",
+                    display: "block",
+                    ml: 2,
+                    fontSize: 15,
+                  }}
                 >
-                  <Paper 
-                    sx={{width: "100vh", justifyContent: "center"}}>
-                  <MenuList
-                    dense
-                  >
-                    {page.underpages.map((underpage, subIndex) => (
-                      <MenuItem
-                        key={subIndex}
-                        onClick={() => {
-                          setOpenSubMenuIndex(null); // Close the menu
-                          if (underpage.link.startsWith("/")) {
-                            navigation(underpage.link);
-                          } else {
-                            window.open(underpage.link, "_blank");
-                          }
-                        }}
-                    sx={{width: "100%", border: 2}}
+                  <Typography color={theme.palette.grey[300]} variant="h6">
+                    {page.page}
+                  </Typography>
+                </Button>
 
-                      >
-                        <Typography
-                          color={theme.palette.primary.main}
-                          variant="body1"
-                        >
-                          {underpage.page}
-                        </Typography>
-                      </MenuItem>
-                    ))}
-                  </MenuList>
-                  </Paper>
-                  </Menu>
-                )}
-            </div>
-          )))}</Grid2>
+                {page.underpages &&
+                  openSubMenuIndex === index && ( // Only open the submenu for the selected page
+                    <Menu
+                      anchorEl={anchorEl} // Use the anchorEl state
+                      open={Boolean(openSubMenuIndex === index)}
+                      onClose={() => setOpenSubMenuIndex(null)} // Close when clicking outside
+                      anchorOrigin={{
+                        vertical: "bottom",
+                        horizontal: "center",
+                      }}
+                      transformOrigin={{
+                        vertical: "top",
+                        horizontal: "center",
+                      }}
+                    >
+                      <div style={{ width: 400 }}>
+                        {page.underpages.map((underpage, subIndex) => (
+                          <MenuItem
+                            key={subIndex}
+                            onClick={() => {
+                              setOpenSubMenuIndex(null); // Close the menu
+                              if (underpage.link.startsWith("/")) {
+                                navigation(underpage.link);
+                              } else {
+                                window.open(underpage.link, "_blank");
+                              }
+                            }}
+                            sx={{
+                              maxWidth: 400,
+                              textWrap: "wrap",
+                            }}
+                          >
+                            <Typography
+                              color={theme.palette.primary.main}
+                              variant="body1"
+                            >
+                              {underpage.page}
+                            </Typography>
+                          </MenuItem>
+                        ))}
+                      </div>
+                    </Menu>
+                  )}
+              </div>
+            ))}
+        </Grid2>
       </AppBar>
     </>
   );

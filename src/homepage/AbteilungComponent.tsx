@@ -1,4 +1,4 @@
-import { Grid2, Stack, Typography } from "@mui/material";
+import { Grid2, Stack, Typography, useMediaQuery } from "@mui/material";
 import { useNavigate } from "react-router";
 import { expertieses } from "./Resources";
 import ApartmentIcon from "@mui/icons-material/Apartment";
@@ -18,9 +18,9 @@ const AbteilungComponent = () => {
         mt={2}
         mb={2}
         spacing={{ xs: 2, md: 3 }}
-        columns={3} // Set the total columns to 3 for a 2-row, 3-column layout
+        columns={2} // Set the total columns to 3 for a 2-row, 3-column layout
         sx={{
-          flexWrap: "nowrap", // Prevents wrapping
+          flexWrap: useMediaQuery(theme.breakpoints.up("xl")) ? "noWrap" : "", // Prevents wrapping
           width: "100%", // Full width of the container
           justifyContent: "center", // Centers content if needed
           zIndex: 99999,
@@ -29,10 +29,11 @@ const AbteilungComponent = () => {
         {expertieses.map((item, index) => (
           <Grid2
             key={index}
-            size={{ xs: 4, sm: 4, md: 4 }}
+            size={{ xs: 4, sm: 4, md: 4, xl: 1 }}
             sx={{
-              width: "calc(100% / 3)", // Each item takes 1/3 of the container width
-              maxWidth: "33.33%", // Limit max width to 1/3 of the container for fixed layout
+              maxWidth: useMediaQuery(theme.breakpoints.up("xl"))
+                ? "15%"
+                : "25.33%", // Limit max width to 1/3 of the container for fixed layout
             }}
           >
             <Grid2

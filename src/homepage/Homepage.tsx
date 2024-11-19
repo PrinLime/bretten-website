@@ -1,6 +1,7 @@
 import {
   Avatar,
   Box,
+  Button,
   Container,
   Divider,
   Fab,
@@ -21,6 +22,7 @@ import {
 } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import InstagramEmbed, { members } from "./Resources";
 import { useEffect, useState } from "react";
 import AbteilungComponent from "./AbteilungComponent";
@@ -65,7 +67,7 @@ const news = [
   },
 ];
 
-export default function Homepage() {
+const Homepage = () => {
   const theme = useTheme();
 
   const [show, setShow] = useState(false);
@@ -79,7 +81,7 @@ export default function Homepage() {
   }, []);
 
   return (
-    <>
+    <Grid2>
       <Box
         sx={{
           position: "relative",
@@ -102,12 +104,13 @@ export default function Homepage() {
         />
         <Typography
           sx={{
+            width: 1200,
             position: "absolute", // Places the text on top of the image
-            top: "50%", // Centers vertically
+            top: "35%", // Centers vertically
             left: "50%", // Centers horizontally
             transform: "translate(-50%, -50%)", // Perfectly centers it
             color: "white",
-            fontSize: "72px",
+            fontSize: "62px",
             fontWeight: "bold",
             textAlign: "center",
             zIndex: 1, // Ensures text stays above the image
@@ -115,6 +118,55 @@ export default function Homepage() {
         >
           WILLKOMMEN AN DEN BERUFLICHEN SCHULEN BRETTEN
         </Typography>
+        <Button
+          startIcon={<LightbulbIcon />}
+          variant="outlined"
+          href="https://bsb-bretten.de/wp-content/uploads/2024/10/Flyer_Aufbaukurs-Gruppenleitung_BS-Bretten_Jan.25.pdf"
+          sx={{
+            position: "absolute", // Places the text on top of the image
+            top: "60%", // Centers vertically
+            left: "50%", // Centers horizontally
+            transform: "translate(-50%, -50%)", // Perfectly centers it
+            color: theme.palette.common.white,
+            borderColor: theme.palette.common.white,
+            fontSize: "20px",
+            fontWeight: "bold",
+            textAlign: "center",
+            zIndex: 1, // Ensures text stays above the image#
+            transition: "transform 0.3s ease, background-color 0.3s ease",
+            "&:hover": {
+              backgroundColor: theme.palette.common.white,
+              color: theme.palette.common.black,
+            },
+          }}
+        >
+          Aufbaukurs Gruppenleitung
+        </Button>
+
+        <Button
+          startIcon={<LightbulbIcon />}
+          variant="outlined"
+          href="https://www.kvv.de/fahrkarten/fahrkarten-preise/schueler-studentinnen/d-ticket-jugendbw.html"
+          sx={{
+            position: "absolute", // Places the text on top of the image
+            top: "70%", // Centers vertically
+            left: "50%", // Centers horizontally
+            transform: "translate(-50%, -50%)", // Perfectly centers it
+            color: theme.palette.common.white,
+            borderColor: theme.palette.common.white,
+            fontSize: "20px",
+            fontWeight: "bold",
+            textAlign: "center",
+            zIndex: 1, // Ensures text stays above the image
+            transition: "transform 0.3s ease, background-color 0.3s ease",
+            "&:hover": {
+              backgroundColor: theme.palette.common.white,
+              color: theme.palette.common.black,
+            },
+          }}
+        >
+          KVV-Ticket
+        </Button>
         <Box
           component="img"
           src="assets/homepage_background.png"
@@ -136,11 +188,17 @@ export default function Homepage() {
         padding={2}
         sx={{
           display: "flex",
+          flexDirection: useMediaQuery(theme.breakpoints.down("md"))
+            ? "column"
+            : "row",
         }}
       >
         <Grid2
-          size={{ xs: 6, md: 8 }}
-          sx={{ paddingLeft: 12, paddingRight: 12 }}
+          size={{
+            xs: 12,
+            md: 8,
+          }}
+          sx={{ paddingLeft: 6, paddingRight: 6 }}
         >
           <Paper sx={{ height: "fit-content", zIndex: 9999, padding: 2 }}>
             <Box>
@@ -446,7 +504,7 @@ export default function Homepage() {
           </Paper>
         </Grid2>
         <Grid2
-          size={{ xs: 6, md: 4 }}
+          size={{ xs: 12, md: 4 }}
           sx={{
             justifyItems: "center",
           }}
@@ -637,6 +695,8 @@ export default function Homepage() {
           <ArrowUpwardIcon />
         </Fab>
       )}
-    </>
+    </Grid2>
   );
-}
+};
+
+export default Homepage;
