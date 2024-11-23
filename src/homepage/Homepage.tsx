@@ -4,7 +4,6 @@ import {
   Button,
   Container,
   Divider,
-  Fab,
   Grid2,
   ImageList,
   ImageListItem,
@@ -21,18 +20,9 @@ import {
   useTheme,
 } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import InstagramEmbed, { members } from "./Resources";
-import { useEffect, useState } from "react";
 import AbteilungComponent from "./AbteilungComponent";
-
-const scrollToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-};
 
 const news = [
   {
@@ -69,16 +59,6 @@ const news = [
 
 const Homepage = () => {
   const theme = useTheme();
-
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShow(window.scrollY > 300); // Show after scrolling down 300px
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <Grid2>
@@ -681,20 +661,6 @@ const Homepage = () => {
           </Box>
         </Grid2>
       </Grid2>
-      {show && (
-        <Fab
-          variant="circular"
-          onClick={scrollToTop}
-          sx={{
-            position: "fixed",
-            bottom: 16,
-            right: 16,
-            zIndex: 1000,
-          }}
-        >
-          <ArrowUpwardIcon />
-        </Fab>
-      )}
     </Grid2>
   );
 };

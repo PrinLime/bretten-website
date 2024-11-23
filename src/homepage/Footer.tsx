@@ -80,7 +80,9 @@ export default function Footer() {
                     sx={{ fontSize: 16 }}
                     color={theme.palette.grey[300]}
                   >
-                    Kontakt
+                    <Link underline="none" color={theme.palette.grey[300]}>
+                      Kontakt
+                    </Link>
                   </Typography>
                 </ListItemText>
               </ListItem>
@@ -97,13 +99,19 @@ export default function Footer() {
                   sx={{ color: "white" }}
                   onClick={() => {
                     navigate("/");
+                    window.scrollTo({
+                      top: 30,
+                      behavior: "smooth",
+                    });
                   }}
                 >
                   <Typography
                     sx={{ fontSize: 16 }}
                     color={theme.palette.grey[300]}
                   >
-                    Abteilungen
+                    <Link underline="none" color={theme.palette.grey[300]}>
+                      Abteilungen
+                    </Link>
                   </Typography>
                 </ListItemText>
               </ListItem>
@@ -155,7 +163,9 @@ export default function Footer() {
                     sx={{ fontSize: 16 }}
                     color={theme.palette.grey[300]}
                   >
-                    Impressum
+                    <Link underline="none" color={theme.palette.grey[300]}>
+                      Impressum
+                    </Link>
                   </Typography>
                 </ListItemText>
               </ListItem>
@@ -177,7 +187,9 @@ export default function Footer() {
                     sx={{ fontSize: 16 }}
                     color={theme.palette.grey[300]}
                   >
-                    Datenschutzerklärung
+                    <Link underline="none" color={theme.palette.grey[300]}>
+                      Datenschutzerklärung
+                    </Link>
                   </Typography>
                 </ListItemText>
               </ListItem>

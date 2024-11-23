@@ -2,7 +2,7 @@ import "./App.css";
 import Homepage from "./homepage/Homepage";
 import Navbar from "./homepage/Navbar";
 import Footer from "./homepage/Footer";
-import { ThemeProvider } from "@mui/material";
+import { Fab, ThemeProvider } from "@mui/material";
 import theme from "./styles";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import News from "./homepage/News";
@@ -17,8 +17,26 @@ import Abteilung4 from "./homepage/Abteilung4";
 import Abteilung5 from "./homepage/Abteilung5";
 import Abteilung6 from "./homepage/Abteilung6";
 import Datenschutzerklärung from "./homepage/Datenschutzerklärung";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import { useEffect, useState } from "react";
 
 function App() {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShow(window.scrollY > 300); // Show after scrolling down 300px
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -42,6 +60,20 @@ function App() {
             <Route path="/abteilung-5" element={<Abteilung5 />} />
             <Route path="/abteilung-6" element={<Abteilung6 />} />
           </Routes>
+          {show && (
+            <Fab
+              variant="circular"
+              onClick={scrollToTop}
+              sx={{
+                position: "fixed",
+                bottom: 16,
+                right: 16,
+                zIndex: 1000,
+              }}
+            >
+              <ArrowUpwardIcon />
+            </Fab>
+          )}
           <Footer />
         </BrowserRouter>
       </ThemeProvider>
