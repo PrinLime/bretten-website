@@ -11,7 +11,7 @@ const Abteilung6 = () => {
           component={"img"}
           height={500}
           width={"100%"}
-          src="assets/abt4.png"
+          src="src/assets/abt4.png"
           sx={{
             objectFit: "cover",
             position: "absolute",
@@ -72,7 +72,7 @@ const Abteilung6 = () => {
             <a href="https://bsb-bretten.de/wp-content/uploads/2023/01/Informationsbroschure_BG_2301.pdf">
               <Grid2
                 component={"img"}
-                src="assets/BGBild.jpg"
+                src="src/assets/BGBild.jpg"
                 height={300}
                 width={600}
               />
@@ -92,7 +92,7 @@ const Abteilung6 = () => {
           <a href="https://bsb-bretten.de/wp-content/uploads/2023/02/BSB_Berufliches_Gymnasium.mov">
             <Grid2
               component={"img"}
-              src="assets/thumbnail.jpg"
+              src="src/assets/thumbnail.jpg"
               height={300}
               width={500}
             />

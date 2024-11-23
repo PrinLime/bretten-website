@@ -137,7 +137,7 @@ const SchoolMembers = () => {
           </Typography>
           <Box
             component="img"
-            src="assets/Organigramm.png"
+            src="src/assets/Organigramm.png"
             alt="Organigramm" // Add alt text for accessibility
             sx={{
               maxWidth: "100%", // Make sure the image is responsive

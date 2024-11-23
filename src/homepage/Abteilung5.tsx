@@ -11,7 +11,7 @@ const Abteilung5 = () => {
           component={"img"}
           height={500}
           width={"100%"}
-          src="assets/abt2.png"
+          src="src/assets/abt2.png"
           sx={{ position: "relative", zIndex: 0 }}
         />
         <Typography

@@ -1,6 +1,6 @@
 import { createTheme, PaletteColorOptions } from "@mui/material/styles";
+import "./index.css";
 
-// Extend the theme to include custom properties for palette
 declare module "@mui/material/styles" {
   interface PaletteCustom {
     footerBackground: string;

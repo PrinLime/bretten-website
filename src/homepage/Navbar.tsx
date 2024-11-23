@@ -87,15 +87,11 @@ const pages = [
   }, //Auslandaktivitäten an den BSB, Speiseplan, Kontakt, Aufbaukurs Gruppenleitung, KVV-Ticket
 ];
 const imageMediaPaths = [
-  "assets/facebook_white.png",
-  "assets/insta_white.png",
-  "assets/moodle_white.png",
-  "assets/untis_white.png",
+  "src/assets/facebook_white.png",
+  "src/assets/insta_white.png",
+  "src/assets/moodle_white.png",
+  "src/assets/untis_white.png",
 ];
-
-// interface NavbarProps {
-//   setOpenDrawer: React.Dispatch<React.SetStateAction<boolean>>;
-// }
 
 const Navbar = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -165,7 +161,7 @@ const Navbar = () => {
                 }}
               >
                 <img
-                  src="assets\bretten_logo_white.png"
+                  src="src/assets\bretten_logo_white.png"
                   height={125}
                   width={125}
                 />

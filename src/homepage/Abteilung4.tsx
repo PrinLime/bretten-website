@@ -11,7 +11,7 @@ const Abteilung4 = () => {
           component={"img"}
           height={500}
           width={"100%"}
-          src="assets/abt1.png"
+          src="src/assets/abt1.png"
           sx={{ position: "relative", zIndex: 0 }} // Keep image at a base level
         />
         <Typography
@@ -54,7 +54,7 @@ const Abteilung4 = () => {
               height={300}
               width={600}
               component={"img"}
-              src="assets/Abt4Bild.jpg"
+              src="src/assets/Abt4Bild.jpg"
             />
           </a>
         </Stack>

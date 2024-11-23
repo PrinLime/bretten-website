@@ -169,7 +169,7 @@ const Homepage = () => {
         </Button>
         <Box
           component="img"
-          src="assets/homepage_background.png"
+          src="src/assets/homepage_background.png"
           alt="Background Image"
           sx={{
             width: "100%",
