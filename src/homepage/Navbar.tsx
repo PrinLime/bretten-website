@@ -22,6 +22,7 @@ const pages = [
   {
     page: "Schulgemeinde +",
     underpages: [
+      { page: "Speiseplan", link: "/speiseplan" },
       { page: "Schulleitung", link: "/schulleitung" },
       { page: "Sekreteriat", link: "/sekretariat" },
       { page: "Kollegium", link: "/kollegium" },
@@ -161,7 +162,7 @@ const Navbar = () => {
                 }}
               >
                 <img
-                  src="src/assets\bretten_logo_white.png"
+                  src="src/assets/bretten_logo_white.png"
                   height={125}
                   width={125}
                 />

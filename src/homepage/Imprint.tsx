@@ -7,7 +7,7 @@ const Imprint = () => {
       <Grid2
         component={"img"}
         width={"100%"}
-        src="assets\Impressum.png"
+        src="src/assets/Impressum.png"
       ></Grid2>
       <Container sx={{ mb: 4 }}>
         <Box mt={10} mb={5}>

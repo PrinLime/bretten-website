@@ -22,7 +22,11 @@ const Secretary = () => {
               ml={2}
             >
               <IconButton edge="start">
-                <img src="assets\bretten_logo.png" height={125} width={125} />
+                <img
+                  src="src/assets/bretten_logo.png"
+                  height={125}
+                  width={125}
+                />
               </IconButton>
               <Grid2 ml={2}>
                 <Typography variant="h3">

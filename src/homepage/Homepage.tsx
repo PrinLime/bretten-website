@@ -511,7 +511,7 @@ const Homepage = () => {
                 component={"img"}
                 borderRadius={4}
                 boxShadow={8}
-                src="assets\Infobroschuere_bretten.jpg"
+                src="src/assets/Infobroschuere_bretten.jpg"
               />
             </Link>
           </Box>
@@ -649,7 +649,7 @@ const Homepage = () => {
                 component={"img"}
                 borderRadius={4}
                 boxShadow={8}
-                src="assets\Infotag.png"
+                src="src/assets/Infotag.png"
                 sx={{
                   transition: "transform 0.3s ease, background-color 0.3s ease",
                   "&:hover": {

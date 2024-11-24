@@ -58,7 +58,7 @@ const Abteilung5 = () => {
               geprüfte Assistentin“) erworben werden.
             </Typography>
           </Grid2>
-          <Grid2 component={"img"} src="assets\BKBild.jpg" />
+          <Grid2 component={"img"} src="src/assets/BKBild.jpg" />
         </Stack>
         <Typography
           variant="h4"
@@ -67,7 +67,7 @@ const Abteilung5 = () => {
         >
           Wählen Sie Ihren Weg zur Fachhochschulreife
         </Typography>
-        <Grid2 component={"img"} src="assets\BKWeg.jpg" />
+        <Grid2 component={"img"} src="src/assets/BKWeg.jpg" />
       </Container>
     </>
   );

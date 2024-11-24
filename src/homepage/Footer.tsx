@@ -134,11 +134,7 @@ export default function Footer() {
                     sx={{ fontSize: 16 }}
                     color={theme.palette.grey[300]}
                   >
-                    <Link
-                      href="#"
-                      underline="none"
-                      color={theme.palette.grey[300]}
-                    >
+                    <Link underline="none" color={theme.palette.grey[300]}>
                       AGB
                     </Link>
                   </Typography>

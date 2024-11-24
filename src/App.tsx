@@ -19,6 +19,7 @@ import Abteilung6 from "./homepage/Abteilung6";
 import Datenschutzerklärung from "./homepage/Datenschutzerklärung";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import { useEffect, useState } from "react";
+import Speiseplan from "./homepage/Speiseplan";
 
 function App() {
   const scrollToTop = () => {
@@ -45,6 +46,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/aktuelles" element={<News />} />
+            <Route path="/speiseplan" element={<Speiseplan />} />
             <Route path="/schulleitung" element={<SchoolMembers />} />
             <Route path="/sekretariat" element={<Secretary />} />
             <Route path="/kollegium" element={<Collegium />} />
