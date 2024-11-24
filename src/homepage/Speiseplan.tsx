@@ -1,5 +1,4 @@
 import { Container, Paper, Typography } from "@mui/material";
-import theme from "../styles";
 
 const Speiseplan = () => {
   return (
